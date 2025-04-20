@@ -223,45 +223,94 @@ using namespace std;
 // Create a class Sports with private sports score.
 // Create a class Result that inherits both and computes the final score
 
-class Marks
-{
-    protected:
-    int sub1, sub2, sub3;
+// class Marks
+// {
+//     protected:
+//     int sub1, sub2, sub3;
 
-    public:
-    Marks(int s1, int s2, int s3) : sub1(s1), sub2(s2), sub3(s3) {}
+//     public:
+//     Marks(int s1, int s2, int s3) : sub1(s1), sub2(s2), sub3(s3) {}
 
-    int sum()
-    {
-        return (sub1 + sub2 + sub3);
-    }
-};
+//     int sum()
+//     {
+//         return (sub1 + sub2 + sub3);
+//     }
+// };
 
-class Sports
-{
-    protected:
-    int sportsScore;
+// class Sports
+// {
+//     protected:
+//     int sportsScore;
 
-    public:
-    Sports(int ss) : sportsScore(ss) {}
+//     public:
+//     Sports(int ss) : sportsScore(ss) {}
 
-};
+// };
 
-class Result : public Marks, public Sports
-{
-    public:
-    Result(int s1, int s2, int s3, int ss) : Marks(s1, s2, s3), Sports(ss) {}
+// class Result : public Marks, public Sports
+// {
+//     public:
+//     Result(int s1, int s2, int s3, int ss) : Marks(s1, s2, s3), Sports(ss) {}
     
-    void showResult()
+//     void showResult()
+//     {
+//         cout << "Final Score : " << sum() + sportsScore << endl;
+//     }
+// };
+
+// int main()
+// {
+//     Result r1(90, 83, 95, 100);
+//     r1.showResult();
+
+//     return 0;
+// }
+
+
+
+
+
+
+// 8. Diamond Problem (Introduce Virtual Inheritance)
+// Problem:
+// Create class A with some data.
+// Create class B and C inheriting from A.
+// Create class D inheriting from B and C.
+// Access data from class A in D.
+// Then modify it using virtual inheritance to resolve ambiguity
+
+class A
+{
+    protected:
+    int val = 10;
+    
+};
+
+class B : public A
+{
+   
+};
+
+class C : public A
+{
+    
+};
+
+class D : public B, public C
+{
+    public:
+    void show()
     {
-        cout << "Final Score : " << sum() + sportsScore << endl;
+        cout << "Accessing through parent B : " << B::val << endl;
+        cout << "Accessing through parent C : " << C::val << endl;
     }
+
 };
 
 int main()
 {
-    Result r1(90, 83, 95, 100);
-    r1.showResult();
+    D d1;
+    d1.show();
 
     return 0;
 }
